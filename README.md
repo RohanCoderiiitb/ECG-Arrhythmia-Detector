@@ -7,6 +7,10 @@ This repo implements a lightweight pipeline for arrhythmia detection using ECG:
 - Python script to read ECG samples (from an AD8232 module via serial), filter the signal, detect R‑peaks, and extract **11 temporal features**.
 - A TensorFlow Lite model converted to a C array for on‑device inference.
 
+✅ **Model Accuracy**: Achieved **90.85%** accuracy during testing.
+
+⚠️ **Status**: The project is still in progress. Deployment on **ESP32** has not been completed yet due to technical issues.
+
 ## 🧠 Model (TFLite → C array)
 The embedded model is exposed as `ecg_arrhythmia_model_tflite` in `model.h` (byte array, with a reported length constant of `ecg_arrhythmia_model_tflite_len = 37744`). Use it with TFLite Micro or your preferred inference runtime on microcontrollers.  
 
@@ -57,66 +61,20 @@ The script prints the 11‑element `float32` feature vector and can plot raw vs.
 
 > Tip: ensure the **feature order and scaling** on‑device exactly match the Python extractor.
 
-## 🧰 Notes & Next Steps
-- Align the filter passband with your sensor/noise profile.
-- Validate R‑peaks visually (matplotlib) to ensure beat alignment.
-- Consider buffering multiple beats and majority voting to stabilize predictions.
-- Add a simple UART protocol to stream features to the MCU if you keep extraction on host first.
+## 🧰 Challenges Faced
+- ⚖️ **Class Imbalance**: Arrhythmia classes were underrepresented.  
+  ✅ Mitigated using **SMOTE (Synthetic Minority Oversampling Technique)** and merging datasets.  
+- ⚙️ **Deployment Issues**: ESP32 deployment is pending due to runtime/memory problems.
+
+## 📸 Screenshots / Results
+<img width="834" height="650" alt="Screenshot 2025-08-22 002947" src="https://github.com/user-attachments/assets/80a67282-3362-4464-942b-7eed40a96072" />  <img width="832" height="648" alt="Screenshot 2025-08-22 003008" src="https://github.com/user-attachments/assets/fa7516bf-fc92-4192-a53e-820df2112756" />  <img width="698" height="654" alt="Screenshot 2025-08-22 003030" src="https://github.com/user-attachments/assets/25428416-c2ac-4006-b593-683b3bdab738" />
+
+
+
 
 ## 🧾 License
 MIT (or your preferred license).
 
 ---
 
-# 🧩 “Code to write README on GitHub”
-
-## Option A — Quick Git commands (local → GitHub)
-```bash
-# 1) Create README.md (if you haven't already)
-echo "# TinyML ECG Arrhythmia Detector" > README.md
-
-# 2) Initialize repo (if new) and push
-git init
-git add README.md feature_extractor.py model.h ecg-arrhythmia-model.tflite Neural_Network.ipynb
-git commit -m "Add README and project files"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git push -u origin main
-```
-
-## Option B — Python script that writes README.md and commits
-```python
-# save as write_readme_and_commit.py
-from pathlib import Path
-import subprocess
-
-README = Path("README.md")
-README.write_text("""# TinyML ECG Arrhythmia Detector
-
-See sections for setup, pipeline, and MCU inference.
-""", encoding="utf-8")
-
-subprocess.run(["git", "init"], check=True)
-subprocess.run(["git", "add", "README.md"], check=True)
-subprocess.run(["git", "commit", "-m", "Add README"], check=True)
-# set your remote before pushing:
-# subprocess.run(["git", "remote", "add", "origin", "https://github.com/<user>/<repo>.git"], check=True)
-# subprocess.run(["git", "push", "-u", "origin", "main"], check=True)
-```
-
-## Option C — GitHub Actions (auto‑check README presence)
-Create `.github/workflows/verify-readme.yml`:
-```yaml
-name: Verify README
-on: [push, pull_request]
-jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Ensure README exists
-        run: |
-          test -f README.md || (echo "README.md missing" && exit 1)
-```
-
----
+> Made with ❤️ for TinyML exploration. Good luck this semester! 🎓
