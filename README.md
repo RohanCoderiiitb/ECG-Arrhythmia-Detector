@@ -69,12 +69,8 @@ The script prints the 11‑element `float32` feature vector and can plot raw vs.
 ## 📸 Screenshots / Results
 <img width="834" height="650" alt="Screenshot 2025-08-22 002947" src="https://github.com/user-attachments/assets/80a67282-3362-4464-942b-7eed40a96072" />  <img width="832" height="648" alt="Screenshot 2025-08-22 003008" src="https://github.com/user-attachments/assets/fa7516bf-fc92-4192-a53e-820df2112756" />  <img width="698" height="654" alt="Screenshot 2025-08-22 003030" src="https://github.com/user-attachments/assets/25428416-c2ac-4006-b593-683b3bdab738" />
 
+ The model achieves ~91% overall accuracy with strong generalization, but performance on the minority class F highlights the impact of class imbalance.
 
+ <img width="1919" height="1008" alt="Screenshot 2025-07-25 101518" src="https://github.com/user-attachments/assets/40a865a5-dc4a-4247-b22a-da02e84ab78d" />
 
-
-## 🧾 License
-MIT (or your preferred license).
-
----
-
-> Made with ❤️ for TinyML exploration. Good luck this semester! 🎓
+ Set of ECG Signals collected from the AD8232 Sensor
