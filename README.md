@@ -1,4 +1,4 @@
-# ❤️‍🩹 TinyML ECG Arrhythmia Detector (Second-Year Project) 🚀
+# ❤️‍🩹 TinyML ECG Arrhythmia Detector
 
 > Real‑time ECG feature extraction on the host + on‑device inference with a TinyML model.
 
